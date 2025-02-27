@@ -1,4 +1,33 @@
-div {
-    color: red;
-    border: 1px dotted  hotpink;
+* {
+    border: 1px dotted hotpink;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: auto;
+}
+
+#display {
+    height: 48px;
+}
+
+#buttons {
+    display: flex;
+}
+
+#numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    padding: 16px;
+}
+
+#operators {
+    display: flex;
+    flex-direction: column;
 }
