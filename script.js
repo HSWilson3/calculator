@@ -55,7 +55,10 @@ equals.addEventListener("click", () => {
 })
 
 clear.addEventListener("click", () => {
-    
+    numA = undefined;
+    numB = undefined;
+    input = "";
+    operator = undefined;
 })
 // Operation functions
 function add(a, b) {
