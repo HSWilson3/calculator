@@ -1,5 +1,5 @@
 * {
-    border: 1px dotted hotpink;
+    background-color: #fcfc62;
 }
 
 #container {
@@ -7,27 +7,55 @@
     flex-direction: column;
     width: 30%;
     margin: auto;
+    margin-top: 24px;
+    border: 1px solid #424242;
+    background-color: #a3a3a3;
 }
 
 #display {
     height: 48px;
+    border: 1px solid #424242;
+    margin: 5px;
+    background-color: #feffea;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: xx-large;
+    text-align: right;
+    color:#424242;   
 }
 
 #buttons {
     display: flex;
+    margin: 5px;
+    gap: 5px;
+    background-color: #a3a3a3;
+    
 }
 
 #numbers {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    gap: 5px;
+    background-color: #a3a3a3;
 }
 
 button {
     padding: 16px;
+    flex: 1;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: x-large;
+    background-color: #c9c9c9;
+    color:#424242;
+    border: 1px solid #424242;
 }
 
 #operators {
     display: flex;
     flex-direction: column;
+    gap: 5px;
+    background-color: #a3a3a3;
+}
+
+#equals {
+    flex: 1;
 }

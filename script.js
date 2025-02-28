@@ -22,9 +22,11 @@ const buttSub = document.querySelector("#sub");
 const buttMult = document.querySelector("#mult");
 const buttDiv = document.querySelector("#divide");
 const equals = document.querySelector("#equals");
+const clear = document.querySelector("#clear");
 const opButtons = [buttAdd, buttSub, buttMult, buttDiv];
 
 const display = document.querySelector("#display");
+
 // Add event listeners to buttons
 numButtons.forEach((item) => {
     item.addEventListener("click", () => {
@@ -52,9 +54,12 @@ equals.addEventListener("click", () => {
     display.innerHTML = result;
 })
 
+clear.addEventListener("click", () => {
+    
+})
 // Operation functions
 function add(a, b) {
-    return a + b;
+    return (a + b);
 }
 
 function subtract(a, b) {
@@ -66,23 +71,27 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return a / b;
+    if (b === 0) {
+        return "NOPE";
+    } else {
+        return a / b;
+    }
 }
 
 // Identify operation required
 function operate(op, a, b) {
     switch (op) {
         case "+":
-            add(a, b);
+            return add(a, b);
             break;
         case "-":
-            subtract(a, b);
+            return subtract(a, b);
             break;
         case "*":
-            multiply(a, b);
+            return multiply(a, b);
             break;
         case "/":
-            divide(a, b);
+            return divide(a, b);
             break;
         default:
             return "invalid operator";
