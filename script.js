@@ -15,7 +15,10 @@ const butt7 = document.querySelector("#seven");
 const butt8 = document.querySelector("#eight");
 const butt9 = document.querySelector("#nine");
 const butt0 = document.querySelector("#zero");
-const numButtons = [butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt9, butt0];
+const numButtons = [
+    butt1, butt2, butt3, butt4, butt5, 
+    butt6, butt7, butt8, butt9, butt0
+];
 
 const buttAdd = document.querySelector("#add");
 const buttSub = document.querySelector("#sub");
@@ -37,13 +40,25 @@ numButtons.forEach((item) => {
 
 opButtons.forEach((item) => {
     item.addEventListener("click", () => {
+        // if numA is undefined:
+            // assign input to numA
+        // else
+            // do the stuff usually called by clicking equals
+            // assign the result to numA
+        operator = item.textContent;
+        if (numA === undefined) {
+            numA = Number(input);
+        } else {
+            numB = Number(input);
+            const intermediate = operate(operator, numA, numB);
+            numA = intermediate;
+            display.innerHTML = intermediate;
+        }
         // send input content to a variable
-        numA = Number(input);
         // if numA is undefined, send to numA
         // set input to empty string
         input = "";
         // set op variable to operator
-        operator = item.textContent;
     })
 })
 
@@ -60,6 +75,8 @@ clear.addEventListener("click", () => {
     input = "";
     operator = undefined;
 })
+// Equals function
+
 // Operation functions
 function add(a, b) {
     return (a + b);
