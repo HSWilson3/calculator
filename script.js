@@ -1,8 +1,8 @@
+// Create "working" variables
 let numA;
 let numB;
 let operator;
 let input = "";
-
 
 // Create variables from buttons
 const butt1 = document.querySelector("#one");
@@ -24,27 +24,22 @@ const buttAdd = document.querySelector("#add");
 const buttSub = document.querySelector("#sub");
 const buttMult = document.querySelector("#mult");
 const buttDiv = document.querySelector("#divide");
-const equals = document.querySelector("#equals");
-const clear = document.querySelector("#clear");
 const opButtons = [buttAdd, buttSub, buttMult, buttDiv];
 
 const display = document.querySelector("#display");
+const equals = document.querySelector("#equals");
+const clear = document.querySelector("#clear");
 
 // Add event listeners to buttons
 numButtons.forEach((item) => {
     item.addEventListener("click", () => {
         input += item.textContent;
         display.innerHTML = input;
-    })
+    });
 });
 
 opButtons.forEach((item) => {
     item.addEventListener("click", () => {
-        // if numA is undefined:
-            // assign input to numA
-        // else
-            // do the stuff usually called by clicking equals
-            // assign the result to numA
         operator = item.textContent;
         if (numA === undefined) {
             numA = Number(input);
@@ -54,12 +49,8 @@ opButtons.forEach((item) => {
             numA = intermediate;
             display.innerHTML = intermediate;
         }
-        // send input content to a variable
-        // if numA is undefined, send to numA
-        // set input to empty string
         input = "";
-        // set op variable to operator
-    })
+    });
 })
 
 equals.addEventListener("click", () => {
@@ -67,15 +58,14 @@ equals.addEventListener("click", () => {
     input = "";
     const result = operate(operator, numA, numB);
     display.innerHTML = result;
-})
+});
 
 clear.addEventListener("click", () => {
     numA = undefined;
     numB = undefined;
     input = "";
     operator = undefined;
-})
-// Equals function
+});
 
 // Operation functions
 function add(a, b) {
@@ -100,22 +90,25 @@ function divide(a, b) {
 
 // Identify operation required
 function operate(op, a, b) {
+    let result;
     switch (op) {
         case "+":
-            return add(a, b);
+            result = add(a, b);
             break;
         case "-":
-            return subtract(a, b);
+            result = subtract(a, b);
             break;
         case "*":
-            return multiply(a, b);
+            result = multiply(a, b);
             break;
         case "/":
-            return divide(a, b);
+            result = divide(a, b);
             break;
         default:
             return "invalid operator";
     }
+    //if (result.toString().includes(".") && result.toString().length)
+    return result;
 }
 
 

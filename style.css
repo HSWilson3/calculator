@@ -31,14 +31,6 @@
     
 }
 
-#numbers {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 5px;
-    background-color: #a3a3a3;
-}
-
 button {
     padding: 16px;
     flex: 1;
@@ -49,11 +41,27 @@ button {
     border: 1px solid #424242;
 }
 
-#operators {
+#numbers {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap-reverse;
+    justify-content: space-between;
     gap: 5px;
     background-color: #a3a3a3;
+}
+
+#numbers button {
+    flex: 1 1 33%;
+}
+
+#operators {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 5px;
+    background-color: #a3a3a3;
+}
+
+#operators button {
+    background-color: lightblue;
 }
 
 #equals {
