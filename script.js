@@ -15,9 +15,10 @@ const butt7 = document.querySelector("#seven");
 const butt8 = document.querySelector("#eight");
 const butt9 = document.querySelector("#nine");
 const butt0 = document.querySelector("#zero");
+const buttDec = document.querySelector("#decimal");
 const numButtons = [
     butt1, butt2, butt3, butt4, butt5, 
-    butt6, butt7, butt8, butt9, butt0
+    butt6, butt7, butt8, butt9, butt0, buttDec
 ];
 
 const buttAdd = document.querySelector("#add");
@@ -29,12 +30,15 @@ const opButtons = [buttAdd, buttSub, buttMult, buttDiv];
 const display = document.querySelector("#display");
 const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
+const back = document.querySelector("#back");
 
 // Add event listeners to buttons
 numButtons.forEach((item) => {
     item.addEventListener("click", () => {
-        input += item.textContent;
-        display.innerHTML = input;
+        if (!(input.includes(".") && item === buttDec)) {
+            input += item.textContent;
+            display.innerHTML = input;  
+        }
     });
 });
 
@@ -63,6 +67,7 @@ equals.addEventListener("click", () => {
         display.innerHTML = result;
         numA = result;
     }
+
 });
 
 clear.addEventListener("click", () => {
@@ -71,6 +76,11 @@ clear.addEventListener("click", () => {
     input = "";
     operator = undefined;
     display.innerHTML = "";
+});
+
+back.addEventListener("click", () => {
+    input = input.slice(0, -1);
+    display.innerHTML = input;
 });
 
 // Operation functions
@@ -92,6 +102,7 @@ function divide(a, b) {
     } else {
         return a / b;
     }
+
 }
 
 // Identify operation required
@@ -113,11 +124,17 @@ function operate(op, a, b) {
         default:
             return "invalid operator";
     }
-    //if (result.toString().includes(".") && result.toString().length)
+    
+    // Handle overflow of display window
+    if (result.toString().includes(".") && result.toString().length > 13) {
+        let arr = result.toString().split(".");
+        let arr2 = arr.map((item) => item.length);
+        let places = 13 - (arr2[0] + 1);
+        result = result.toFixed(places);
+    }
+
     return result;
 }
-
-
 
 
 

@@ -10,17 +10,18 @@
     margin-top: 24px;
     border: 1px solid #424242;
     background-color: #a3a3a3;
+    border-radius: 5px;
 }
 
 #display {
-    height: 48px;
+    height: 60px;
     border: 1px solid #424242;
     margin: 5px;
     background-color: #feffea;
     font-family: 'Courier New', Courier, monospace;
     font-size: xx-large;
     text-align: right;
-    color:#424242;   
+    color:#424242;  
 }
 
 #buttons {
@@ -28,7 +29,6 @@
     margin: 5px;
     gap: 5px;
     background-color: #a3a3a3;
-    
 }
 
 button {
@@ -39,6 +39,7 @@ button {
     background-color: #c9c9c9;
     color:#424242;
     border: 1px solid #424242;
+    border-radius: 10px;
 }
 
 #numbers {
@@ -52,6 +53,8 @@ button {
 #numbers button {
     flex: 1 1 30%;
 }
+
+
 
 #operators {
     display: flex;
