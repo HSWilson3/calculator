@@ -44,20 +44,25 @@ opButtons.forEach((item) => {
         if (numA === undefined) {
             numA = Number(input);
         } else {
-            numB = Number(input);
-            const intermediate = operate(operator, numA, numB);
-            numA = intermediate;
-            display.innerHTML = intermediate;
+            if (!(input === "")) {
+                numB = Number(input);
+                const intermediate = operate(operator, numA, numB);
+                numA = intermediate;
+                display.innerHTML = intermediate;
+            }
         }
         input = "";
     });
 })
 
 equals.addEventListener("click", () => {
-    numB = Number(input);
-    input = "";
-    const result = operate(operator, numA, numB);
-    display.innerHTML = result;
+    if (!(operator === undefined)) {
+        numB = Number(input);
+        input = "";
+        const result = operate(operator, numA, numB);
+        display.innerHTML = result;
+        numA = result;
+    }
 });
 
 clear.addEventListener("click", () => {
@@ -65,6 +70,7 @@ clear.addEventListener("click", () => {
     numB = undefined;
     input = "";
     operator = undefined;
+    display.innerHTML = "";
 });
 
 // Operation functions
