@@ -35,39 +35,18 @@ const back = document.querySelector("#back");
 // Add event listeners to buttons
 numButtons.forEach((item) => {
     item.addEventListener("click", () => {
-        if (!(input.includes(".") && item === buttDec)) {
-            input += item.textContent;
-            display.innerHTML = input;  
-        }
+        numEvent(item.textContent);
     });
 });
 
 opButtons.forEach((item) => {
     item.addEventListener("click", () => {
-        operator = item.textContent;
-        if (numA === undefined) {
-            numA = Number(input);
-        } else {
-            if (!(input === "")) {
-                numB = Number(input);
-                const intermediate = operate(operator, numA, numB);
-                numA = intermediate;
-                display.innerHTML = intermediate;
-            }
-        }
-        input = "";
+        opEvent(item.textContent);
     });
 })
 
 equals.addEventListener("click", () => {
-    if (!(operator === undefined)) {
-        numB = Number(input);
-        input = "";
-        const result = operate(operator, numA, numB);
-        display.innerHTML = result;
-        numA = result;
-    }
-
+    equalsEvent();
 });
 
 clear.addEventListener("click", () => {
@@ -79,9 +58,61 @@ clear.addEventListener("click", () => {
 });
 
 back.addEventListener("click", () => {
+    backEvent();
+});
+
+// Add event listeners for keyboard input
+document.addEventListener("keydown", (event) => {
+    const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+    const ops = ["+", "-", "*", "/"];
+    if (numbers.includes(event.key)) {
+        numEvent(event.key);
+    } else if (ops.includes(event.key)) {
+        opEvent(event.key);
+    } else if (event.key === "=" || event.key === "Enter") {
+        equalsEvent();
+    } else if (event.key === "Backspace") {
+        backEvent();
+    }
+});
+
+// Event listener functions
+function numEvent(num) {
+    if (!(input.includes(".") && num === ".")) {
+        input += num;
+        display.innerHTML = input;  
+    }
+}
+
+function opEvent(op) {
+    operator = op;
+    if (numA === undefined) {
+        numA = Number(input);
+    } else {
+        if (!(input === "")) {
+            numB = Number(input);
+            const intermediate = operate(operator, numA, numB);
+            numA = intermediate;
+            display.innerHTML = intermediate;
+        }
+    }
+    input = "";
+}
+
+function equalsEvent() {
+    if (!(operator === undefined)) {
+        numB = Number(input);
+        input = "";
+        const result = operate(operator, numA, numB);
+        display.innerHTML = result;
+        numA = result;
+    }
+}
+
+function backEvent() {
     input = input.slice(0, -1);
     display.innerHTML = input;
-});
+}
 
 // Operation functions
 function add(a, b) {
